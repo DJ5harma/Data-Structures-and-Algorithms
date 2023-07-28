@@ -33,6 +33,10 @@ public:
         level=l;
     }
 
+// Manually creating a constructor
+    Hero(){
+        cout<<"Constructor acts"<<endl;
+    }
 };
 
 
@@ -69,6 +73,18 @@ int main(){cout<<endl;
     b->setHealth(80);
     cout<<b->getHealth()<<endl; //M2 for the same
 
+
+// Manually creating a constructor
+// When we write [Hero h1;], by default a constructor [h1.Hero()] will be created  
+// As we've created a Hero(){...} constructor manually inside the class, if we now call Hero h1;, the constructor will act
+// Creating a constructor manually, the constructor created by default by the system will cease to exist
+
+// Statically
+Hero h1;
+
+// Dynamically
+Hero *h=new Hero();
+Hero *j=new Hero;
 
 
 
