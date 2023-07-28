@@ -66,12 +66,12 @@ int main(){cout<<endl;
 
 
 // Dynamic allocation
-    Hero *b;
-    (*b).setHealth(40);
-    cout<<(*b).getHealth()<<endl;//M1
+    //Hero *b;
+    //(*b).setHealth(40);
+    //cout<<(*b).getHealth()<<endl;//M1
 
-    b->setHealth(80);
-    cout<<b->getHealth()<<endl; //M2 for the same
+    //b->setHealth(80);
+    //cout<<b->getHealth()<<endl; //M2 for the same
 
 
 // Manually creating a constructor
@@ -80,11 +80,11 @@ int main(){cout<<endl;
 // Creating a constructor manually, the constructor created by default by the system will cease to exist
 
 // Statically
-Hero h1;
+    // Hero h1;
 
 // Dynamically
-Hero *h=new Hero();
-Hero *j=new Hero;
+    //Hero *h=new Hero();
+    //Hero *j=new Hero;
 
 
 
