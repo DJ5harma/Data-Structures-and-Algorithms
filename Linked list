@@ -55,14 +55,27 @@ void insertAtIndex(Node* &head, Node* &tail, int value, int index){
 }
 void deleteAtIndex(Node* &head, int index){
 
-    Node* temp = new Node();//Allocating space for a new temporary node is essential
-    temp->next=head;
-    for(int i=0; i<index; i++){
-        temp=temp->next;
-    }
-    if(temp->next==head){head=temp->next->next; return;}
-    temp->next=temp->next->next;
+    if(index==0){
+        Node* temp = head;
+        head=head->next;
 
+        temp->next=NULL;
+        delete temp;
+        return;}
+
+
+    Node* current = head;
+    Node* previous = NULL;
+
+    for(int i=0; i<index; i++){
+        previous=current;
+        current=current->next;
+    }
+    
+    previous->next=current->next;
+
+    current->next=NULL;//Before freeing up from the memory space, it should not point to a node, 
+    delete current;
 }
 
 
@@ -93,7 +106,7 @@ int main(){cout<<endl;
     print(head);cout<<"Head : "<<head->data<<", Tail : "<<tail->data<<endl;
 
 // Delete at index
-    deleteAtIndex(head, 4);
+    deleteAtIndex(head, 3);
     print(head);cout<<"Head : "<<head->data<<", Tail : "<<tail->data<<endl;
 
 
