@@ -33,6 +33,28 @@ void reverseIteratively(Node*&head){
 }
 
 
+Node* middleNode(Node*&head){
+    int count=0;
+    Node*temp=head;
+    
+    while(temp!=NULL){
+        count++;
+        temp=temp->next;
+    }
+
+    int mid=count/2;
+    cout<<"index of mid = "<<mid<<endl ;
+
+    count=0;temp=head;
+    while(count<mid){
+        count++;
+        temp=temp->next;
+    }
+
+    return temp;
+
+}
+
     
 
 int main(){cout<<endl;
@@ -51,6 +73,10 @@ int main(){cout<<endl;
     Node*head=n1;
 
     print(head);
+
+    cout<<middleNode(head)->data;
+
+           
     reverseIteratively(head);
     print(head);
     
