@@ -58,6 +58,16 @@ void reverseIterativelyM2(Node*&head){
     delete temp; delete previous, delete current;
 }
 
+Node* reverseRecursively(Node*&head, Node*prev=new Node(), Node*afterHead=new Node(), bool firstTime=true){
+
+    if(firstTime){prev=NULL;afterHead=head->next;}
+    
+    head->next=prev;
+
+    if(afterHead==NULL){return head;}
+
+    return reverseRecursively(afterHead, head, afterHead->next, false);
+}
 
 Node* middleNode(Node*&head){
     int count=0;
@@ -107,6 +117,9 @@ int main(){cout<<endl;
     print(head);
     reverseIterativelyM2(head);
     print(head);
+
+    Node* newHead=reverseRecursively(head);
+    print(newHead);
     
 
 
