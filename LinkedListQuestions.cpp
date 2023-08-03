@@ -31,6 +31,32 @@ void reverseIteratively(Node*&head){
     }b->next=a;
     head=b;
 }
+void reverseIterativelyM2(Node*&head){
+    Node*previous=new Node();
+    Node*current=new Node();
+    Node*temp=new Node();
+    
+    previous->next=NULL;
+    current->next=head;
+
+    while(current->next->next!=NULL){
+        temp->next=current->next->next;
+
+        current->next->next=previous->next;
+
+        previous->next=current->next;
+
+        current->next=temp->next;
+        
+    }
+    current->next->next=previous->next;
+    head=current->next;
+
+    current->next=NULL;
+    previous->next=NULL;
+    temp->next=NULL;
+    delete temp; delete previous, delete current;
+}
 
 
 Node* middleNode(Node*&head){
@@ -78,6 +104,8 @@ int main(){cout<<endl;
 
            
     reverseIteratively(head);
+    print(head);
+    reverseIterativelyM2(head);
     print(head);
     
 
