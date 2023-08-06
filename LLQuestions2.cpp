@@ -98,7 +98,6 @@ void lastKNodesAtStart(node*&head, int k){
 }
 
 void evenNodesAfterOddNodes(node*&head){
-    // node*oddHead=head;
     node*evenHead=head->next;
     node*oddTemp=head;
     node*evenTemp=head->next;
