@@ -41,6 +41,7 @@ void reverseHT(node*&h, node*&t){
     return;
 }
 
+// !!!! Seems to not register nodes at last correctly if (totalNodes==MultipleOfK), DEBUG<GO FIGURE>
 void reverseKNodes(node*&head, int k){
 
     node*futureHead=new node();
