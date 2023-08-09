@@ -72,7 +72,33 @@ void infixToPrefix(string str){
     }
 }
     
-
+bool checkIfBalancedParanthesis(string str){
+    stack<char>st;
+    for(int i=0; i<str.length(); i++){
+        if(str[i]=='{'||str[i]=='['||str[i]=='('){
+            switch (str[i])
+            {
+            case '{':
+                st.push('}');
+                break;
+            case '[':
+                st.push(']');
+                break;
+            case '(':
+                st.push(')');
+                break;
+            
+            default:
+                break;
+            }
+        }
+        else if(str[i]==st.top()){
+            st.pop();
+        }
+        else{return false;}
+    }
+    return true;
+}
 
 
 
@@ -84,4 +110,9 @@ string s3 = "(a-b/c)*(a/k-d)";
 // cout<<endl;
 // infixToPrefix(s3);
 
+// string str1="{[()]}";
+// string str2="{[(])}";
+// cout<<checkIfBalancedParanthesis(str1)<<endl;
+// cout<<checkIfBalancedParanthesis(str2);
+    
 return 0;}
