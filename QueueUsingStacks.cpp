@@ -3,80 +3,83 @@
 using namespace std;
 
 // Queue using stacks
+
 class queue{
- 
+   int size;
    stack<int>st1;
    stack<int>st2;
 
 public:
 
-   queue(){}
+   queue(){size=0;}
 
-   void enqueue(int data){
-      st1.push(data);
-   }
-   void dequeue(){
-
+   void push(int data){
       if(st1.empty()){
-         cout<<"Queue is empty!";
-         return;
+         while(!st2.empty()){
+            st1.push(st2.top());
+            st2.pop();
+         }
       }
+      st1.push(data);
+      size++;
+   }     
+   void pop(){
+      if(size==0){cout<<"Queue underflow!";return;}
 
-      while(!st1.empty()){
-         st2.push(st1.top());
-         st1.pop();
+      if(!st1.empty()){
+         while(!st1.empty()){
+            st2.push(st1.top());
+            st1.pop();
+         }
       }
       st2.pop();
-      while(!st2.empty()){
-         st1.push(st2.top());
-         st2.pop();
-      }
-      return;
-      
+      size--;return;
    }
-   int peek(){
-      if(st1.empty()){
-         cout<<"Queue is empty!";
-         return -1;
-      }
-
-      while(!st1.empty()){
-         st2.push(st1.top());
-         st1.pop();
-      }
-      int peekValue = st2.top();
+   int top(){
+      if(size==0){cout<<"Queue underflow!";return -1;}
       
-      while(!st2.empty()){
-         st1.push(st2.top());
-         st2.pop();
-      } 
-      return peekValue;
+      if(!st1.empty()){
+         while(!st1.empty()){
+            st2.push(st1.top());
+            st1.pop();
+         }
+      }
+      return st2.top();
    }
    bool empty(){
-      if(st1.empty()){return true;}
-      return false;
+     if(size==0){return true;}
+     return false;
    }
+   int getSize(){
+      return size;
+   }
+
+
 };
 
 int main(){
 
    queue q;
-   q.enqueue(1);
-   q.enqueue(2);
-   q.enqueue(3);
-   q.enqueue(4);
+   q.push(1);
+   q.push(2);
+   q.push(3);
+   q.push(4);
 
-   cout<<q.peek()<<endl;
-   q.dequeue();
-   cout<<q.peek()<<endl;
-   q.dequeue();
-   cout<<q.peek()<<endl;
-   q.dequeue();
-   cout<<q.peek()<<endl;
-
+   cout<<q.top()<<endl;
+   q.pop();
+   cout<<q.top()<<endl;
+   q.pop();
+   cout<<q.top()<<endl;
+   q.pop();
+   cout<<q.top()<<endl;
+   q.pop();
+   cout<<q.top()<<endl;
+   q.pop();
    cout<<q.empty()<<endl;
-   q.dequeue();
-   cout<<q.empty();
+
+   cout<<q.getSize()<<endl;
+   
+
 
 
 return 0;}
