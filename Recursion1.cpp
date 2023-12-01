@@ -331,8 +331,9 @@ int partition(int arr[], int start, int pivot){
 void quickSort(int arr[], int start, int end){
     
     if(start>=end){return;}
-    quickSort(arr, start, partition(arr, start, end)-1);
-    quickSort(arr, partition(arr, start, end)+1, end);
+    int p = partition(arr, start, end);
+    quickSort(arr, start, p-1);
+    quickSort(arr, p+1, end);
     
 }
 
