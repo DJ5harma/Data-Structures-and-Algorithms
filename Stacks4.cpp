@@ -31,7 +31,7 @@ void infixToPostfix(string str){
             st.push(str[i]);
         }
     }
-        while(!str.empty()){
+        while(!st.empty()){
             cout<<st.top();
             st.pop();
         }
