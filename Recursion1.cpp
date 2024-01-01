@@ -227,81 +227,36 @@ int* selectionSort(int arr[], int end, int i=0, int max=0){
 }
 
 // Merge 2 sorted arrays
-int* mergeArrays(int arr1[], int arr2[], int n1, int n2, int arr3[], int i=0, int j=0, int k=0){
+void merge(int arr[], int s1, int mid, int e2){
     
-    if(i==n1 && j==n2){return arr3;}
+    int arr3[e2-s1+1];
+    int i=s1;
+    int j=mid+1;
 
-    else if(i==n1){
-      arr3[k]=arr2[j];
-      return mergeArrays(arr1, arr2, n1, n2, arr3, i, j+1, k+1);
-    }
-    else if(j==n2){
-      arr3[k]=arr1[i];
-      return mergeArrays(arr1, arr2, n1, n2, arr3, i+1, j, k+1);
-    }
-    else 
-    if(arr1[i]<arr2[j])
+    int k=0;
+    while (i<=mid && j<=e2)
     {
-      arr3[k]=arr1[i];
-      return mergeArrays(arr1, arr2, n1, n2, arr3, i+1, j, k+1);
+        if(arr[i] < arr[j]){arr3[k]=arr[i]; i++;}
+        else{arr3[k]=arr[j]; j++;}
+        k++;
     }
-    else 
-    {
-      arr3[k]=arr2[j];
-      return mergeArrays(arr1, arr2, n1, n2, arr3, i, j+1, k+1);
+    while(i<=mid){ arr3[k]=arr[i]; i++; k++;}
+    while(j<=e2){ arr3[k]=arr[j]; j++; k++;}
+
+    for(int i=s1, j=0; i<=e2; ++i, ++j){
+        arr[i]=arr3[j];
     }
-
-} 
-
-
-
-
-// Merge 2 sorted arrays 
-void merge(int arr[], int L, int mid, int R)
-{  
-    int n1=mid-L+1, arr1[n1];
-    int n2=R-mid, arr2[n2];
-    for(int i=0; i<n1; i++){arr1[i]=arr[L+i];}
-    for(int i=0; i<n2; i++){arr2[i]=arr[mid+1+i];}
-
-    int i=0, j=0, k=L;
-    int n3=n1+n2, arr3[n3];
-
-    while(i<n1 && j<n2){
-        if(arr1[i]<arr2[j]){
-            arr[k]=arr1[i];
-            i++;
-            }
-        else{
-            arr[k]=arr2[j];
-            j++;
-            }
-        k++;      
-    }
-    while(j<n2){
-        arr[k]=arr2[j];
-        j++;k++;
-    }
-    while(i<n1){
-        arr[k]=arr1[i];
-        i++;k++;
-    }
-
 }
-// Merge sort T(n)=2T(n/2)+n
-void mergeSort(int arr[], int L, int R){
-    
-    if(R>L){
 
-        int mid = (L+R)/2;
-        
-        mergeSort(arr, L, mid);
+void mergeSort(int arr[], int s, int e){
 
-        mergeSort(arr, mid+1, R);
-        
-        merge(arr, L, mid, R);
-    }
+    if(e==s){return;}
 
+    int mid = (s+e)/2;
+    mergeSort(arr, s, mid);
+    mergeSort(arr, mid+1, e);
+
+    merge(arr, s, mid, e);
 }
 
 
